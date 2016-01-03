@@ -35,7 +35,7 @@ template<Message M, typename R, typename... P>
 class Msg
 {
 public:
-    typedef R(*Receiver)(P...); //std::function<R(P...)> Receiver; //generates a SHITLOAD of bloat with performance penalties
+    typedef R(__cdecl *Receiver)(P...); //std::function<R(P...)> Receiver; //generates a SHITLOAD of bloat with performance penalties
 
     explicit Msg(Receiver receiver)
         : receiver(receiver)

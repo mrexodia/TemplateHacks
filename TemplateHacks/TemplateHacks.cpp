@@ -16,6 +16,11 @@ static int ran()
     return rand();
 }
 
+static double addDouble(double a, double b)
+{
+    return a + b;
+}
+
 //Function that receives messages.
 Result sendMessage(Message msg, ...)
 {

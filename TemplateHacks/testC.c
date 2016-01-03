@@ -4,12 +4,14 @@
 
 void testC()
 {
-    puts("C");
     int three, minone, ran;
+    double threedbl;
+    puts("C");    
     three = AddFunctionInline(1, 2);
     minone = NegFunctionInline(1);
     srand(0);
     ran = RandFunctionInline();
-    puts("  want: 3 -1 38");
-    printf("  got : %d %d %d\n", three, minone, ran);
+    threedbl = AddDoubleFunctionInline(1.75654354, 1.24345646);
+    puts("  want: 3 -1 38 3.000000");
+    printf("  got : %d %d %d %f\n", three, minone, ran, threedbl);
 }
