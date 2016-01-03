@@ -1,11 +1,11 @@
 //Included by other files.
 
 #ifndef DEF_MESSAGE
-#define DEF_MESSAGE(enumValue, typedefAlias, function)
+#define DEF_MESSAGE(enumValue, typedefAlias, implementation)
 #endif //DEF_MESSAGE
 
-#ifndef DEF_FUNCTION
-#define DEF_FUNCTION(returnType, name, ...)
+#ifndef DEF_IMPLEMENTATION
+#define DEF_IMPLEMENTATION(returnType, name, ...)
 #endif //DEF_MESSAGE
 
 #ifndef DEF_COMMA
@@ -24,14 +24,14 @@
 #endif //__cplusplus
 #endif //DEF_SEND
 
-DEF_MESSAGE(MsgAdd, AddMsg, DEF_FUNCTION(int, add, int, int)) DEF_COMMA
+DEF_MESSAGE(MsgAdd, AddMsg, DEF_IMPLEMENTATION(int, add, int, int)) DEF_COMMA
 DEF_STATIC(static int AddFunctionInline(int a, int b) { return DEF_SEND(MsgAdd, AddMsg, a, b); })
-DEF_MESSAGE(MsgNeg, NegMsg, DEF_FUNCTION(int, neg, int)) DEF_COMMA
+DEF_MESSAGE(MsgNeg, NegMsg, DEF_IMPLEMENTATION(int, neg, int)) DEF_COMMA
 DEF_STATIC(static int NegFunctionInline(int x) { return DEF_SEND(MsgNeg, NegMsg, x); })
-DEF_MESSAGE(MsgRand, RandMsg, DEF_FUNCTION(int, ran))
+DEF_MESSAGE(MsgRand, RandMsg, DEF_IMPLEMENTATION(int, ran))
 DEF_STATIC(static int RandFunctionInline() { return DEF_SEND(MsgRand, RandMsg); })
 
 #undef DEF_STATIC
 #undef DEF_COMMA
-#undef DEF_FUNCTION
+#undef DEF_IMPLEMENTATION
 #undef DEF_MESSAGE

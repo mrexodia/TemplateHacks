@@ -1,6 +1,6 @@
 #include "TemplateHacks.h"
 
-//message implementations
+//Message implementations.
 static int add(int a, int b)
 {
     return a + b;
@@ -13,31 +13,28 @@ static int neg(int x)
 
 static int ran()
 {
-    static auto n = 0;
-    return n++;
+    return rand();
 }
 
-//receiving message function
+//Function that receives messages.
 Result sendMessage(Message msg, ...)
 {
+    //Declare function implementation pointers.
     static const auto messageFunctions = std::make_tuple(
-#define DEF_MESSAGE(enumValue, typedefAlias, function) typedefAlias(function)
-#define DEF_FUNCTION(returnType, name, ...) name
+#define DEF_MESSAGE(enumValue, typedefAlias, implementation) typedefAlias(implementation)
+#define DEF_IMPLEMENTATION(returnType, name, ...) name
 #define DEF_COMMA ,
-#define DEF_STATIC(x)
 #include "MessageTable.h"
         );
 
+    //Call the appropriate function pointer for the switch case (needs continuous, zero based Message enum values).
     va_list vaList;
     va_start(vaList, msg);
     switch (msg)
     {
-#define DEF_MESSAGE(enumValue, typedefAlias, function) \
+#define DEF_MESSAGE(enumValue, typedefAlias, implementation) \
     case enumValue: \
         return Result(std::get<enumValue>(messageFunctions).Receive(vaList));
-#define DEF_FUNCTION(returnType, name, ...)
-#define DEF_COMMA
-#define DEF_STATIC(x)
 #include "MessageTable.h"
 
     default:

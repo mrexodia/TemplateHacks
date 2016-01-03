@@ -7,21 +7,21 @@
 #include <functional>
 #endif //__cplusplus
 
+//Define possible messages.
 enum Message
 {
 #define DEF_MESSAGE(enumValue, typedefAlias, function) enumValue
-#define DEF_FUNCTION
 #define DEF_COMMA ,
-#define DEF_STATIC(x)
 #include "MessageTable.h"
 };
 
+//Define message receiver return type.
 typedef int Result;
 static const Result DefaultResult = 0;
-typedef int Param;
 
 extern "C" Result sendMessage(Message msg, ...);
 
+#ifdef __cplusplus
 template<Message M, typename R, typename... P>
 class Msg
 {
@@ -55,18 +55,14 @@ private:
     }
 };
 
-#ifdef __cplusplus
-#define DEF_MESSAGE(enumValue, typedefAlias, function) typedef Msg<enumValue, function> typedefAlias;
-#define DEF_FUNCTION(returnType, name, ...) returnType, __VA_ARGS__
-#define DEF_COMMA
-#define DEF_STATIC(x)
-#include "MessageTable.h"
-
-#define DEF_MESSAGE(enumValue, typedefAlias, function)
-#define DEF_FUNCTION(returnType, name, ...)
-#define DEF_COMMA
-#define DEF_STATIC(x) x
+//Typedef Msg types
+#define DEF_MESSAGE(enumValue, typedefAlias, implementation) typedef Msg<enumValue, implementation> typedefAlias;
+#define DEF_IMPLEMENTATION(returnType, name, ...) returnType, __VA_ARGS__
 #include "MessageTable.h"
 #endif //__cplusplus
+
+//Declare static implemetation functions.
+#define DEF_STATIC(x) x
+#include "MessageTable.h"
 
 #endif //TEMPLATE_HACKS_H
