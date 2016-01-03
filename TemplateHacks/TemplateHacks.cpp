@@ -1,25 +1,10 @@
 #include "TemplateHacks.h"
 
 //Message implementations.
-static int add(int a, int b)
-{
-    return a + b;
-}
-
-static int neg(int x)
-{
-    return -x;
-}
-
-static int ran()
-{
-    return rand();
-}
-
-static double addDouble(double a, double b)
-{
-    return a + b;
-}
+static int add(int a, int b) { return a + b; }
+static int neg(int x) { return -x; }
+static int ran() { return rand();  }
+static double addDouble(double a, double b) { return a + b; }
 
 //Function that receives messages.
 Result sendMessage(Message msg, ...)
