@@ -18,6 +18,12 @@
     <ClCompile Include="TemplateHacks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="testC.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="testCpp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

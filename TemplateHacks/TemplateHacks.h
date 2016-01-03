@@ -17,9 +17,18 @@ enum Message
 
 //Define message receiver return type.
 typedef int Result;
-static const Result DefaultResult = 0;
 
+#ifdef __cplusplus
+static const Result DefaultResult = 0;
+#else
+#define DefaultResult 0
+#endif //__cplusplus
+
+#ifdef __cplusplus
 extern "C" Result sendMessage(Message msg, ...);
+#else
+Result sendMessage(int msg, ...);
+#endif //__cplusplus
 
 #ifdef __cplusplus
 template<Message M, typename R, typename... P>

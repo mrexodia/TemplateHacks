@@ -65,7 +65,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="testCpp.cpp" />
     <ClCompile Include="TemplateHacks.cpp" />
+    <ClCompile Include="testC.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MessageTable.h" />
