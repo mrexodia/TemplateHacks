@@ -9,13 +9,11 @@
 
 enum Message
 {
-#define DEF_COMMA ,
-#define DEF_FUNCTION
 #define DEF_MESSAGE(enumValue, typedefAlias, function) enumValue
+#define DEF_FUNCTION
+#define DEF_COMMA ,
+#define DEF_STATIC(x)
 #include "MessageTable.h"
-#undef DEF_MESSAGE
-#undef DEF_FUNCTION
-#undef DEF_COMMA
 };
 
 typedef int Result;
@@ -58,21 +56,17 @@ private:
 };
 
 #ifdef __cplusplus
-#define DEF_COMMA
-#define DEF_FUNCTION(returnType, name, ...) returnType, __VA_ARGS__
 #define DEF_MESSAGE(enumValue, typedefAlias, function) typedef Msg<enumValue, function> typedefAlias;
+#define DEF_FUNCTION(returnType, name, ...) returnType, __VA_ARGS__
+#define DEF_COMMA
+#define DEF_STATIC(x)
 #include "MessageTable.h"
-#undef DEF_MESSAGE
-#undef DEF_FUNCTION
-#undef DEF_COMMA
 
-#undef DEF_STATIC
+#define DEF_MESSAGE(enumValue, typedefAlias, function)
+#define DEF_FUNCTION(returnType, name, ...)
+#define DEF_COMMA
 #define DEF_STATIC(x) x
 #include "MessageTable.h"
-#undef DEF_STATIC
-#undef DEF_COMMA
-#undef DEF_FUNCTION
-#undef DEF_MESSAGE
 #endif //__cplusplus
 
 #endif //TEMPLATE_HACKS_H

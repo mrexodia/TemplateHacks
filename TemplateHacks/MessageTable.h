@@ -30,3 +30,8 @@ DEF_MESSAGE(MsgNeg, NegMsg, DEF_FUNCTION(int, neg, int)) DEF_COMMA
 DEF_STATIC(static int NegFunctionInline(int x) { return DEF_SEND(MsgNeg, NegMsg, x); })
 DEF_MESSAGE(MsgRand, RandMsg, DEF_FUNCTION(int, ran))
 DEF_STATIC(static int RandFunctionInline() { return DEF_SEND(MsgRand, RandMsg); })
+
+#undef DEF_STATIC
+#undef DEF_COMMA
+#undef DEF_FUNCTION
+#undef DEF_MESSAGE
