@@ -37,7 +37,7 @@ Result sendMessage(Message msg, ...)
 #define DEF_FUNCTION(returnType, name, ...)
 #define DEF_MESSAGE(enumValue, typedefAlias, function) \
     case enumValue: \
-        return Result(std::get<enumValue>(messageFunctions).receive(vaList));
+        return Result(std::get<enumValue>(messageFunctions).Receive(vaList));
 #include "MessageTable.h"
 #undef DEF_MESSAGE
 #undef DEF_FUNCTION

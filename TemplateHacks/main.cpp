@@ -2,11 +2,11 @@
 
 int main()
 {
-    auto three = AddMsg::send(1, 2); //shows (int, int) with autocompletion
+    auto three = AddMsg::Send(1, 2); //shows (int, int) with autocompletion
     three = AddFunctionInline(1, 2); //shows (int a, int b) with autocompletion
-    auto one = NegMsg::send(-1);
+    auto one = NegMsg::Send(-1);
     one = NegFunctionInline(-1);
-    auto ran = RandMsg::send();
+    auto ran = RandMsg::Send();
     ran = RandFunctionInline();
     printf("%d %d %d\n", three, one, ran);
     getchar();

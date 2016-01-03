@@ -35,26 +35,26 @@ public:
     {
     }
 
-    static R send(P... params)
+    static R Send(P... params)
     {
-        return R(sendMessage(M, params...));
+        return R(sendMessage(M, std::forward<P>(params)...));
     }
 
-    template<typename T>
-    T getArg(va_list & vaList) const
+    R Receive(va_list & vaList) const
     {
-        return va_arg(vaList, T);
-    }
-
-    R receive(va_list & vaList) const
-    {
-        auto result = receiver(getArg<P>(vaList)...);
+        auto result = receiver(std::forward<P>(getArg<P>(vaList))...);
         va_end(vaList);
         return result;
     }
 
 private:
     Receiver receiver;
+
+    template<typename T>
+    T getArg(va_list & vaList) const
+    {
+        return va_arg(vaList, T);
+    }
 };
 
 #ifdef __cplusplus
