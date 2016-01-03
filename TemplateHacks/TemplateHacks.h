@@ -10,7 +10,7 @@
 //Define possible messages.
 enum Message
 {
-#define DEF_MESSAGE(enumValue, typedefAlias, function) enumValue
+#define DEF_MSG(enumValue, typedefAlias, function) enumValue
 #define DEF_COMMA ,
 #include "MessageTable.h"
 };
@@ -35,7 +35,7 @@ template<Message M, typename R, typename... P>
 class Msg
 {
 public:
-    typedef R(__cdecl *Receiver)(P...); //std::function<R(P...)> Receiver; //generates a SHITLOAD of bloat with performance penalties
+    typedef R(__cdecl *Receiver)(P...); //std::function<R(P...)> Receiver; //generates a SHITLOAD of bloat code
 
     explicit Msg(Receiver receiver)
         : receiver(receiver)
@@ -65,13 +65,13 @@ private:
 };
 
 //Typedef Msg types
-#define DEF_MESSAGE(enumValue, typedefAlias, implementation) typedef Msg<enumValue, implementation> typedefAlias;
-#define DEF_IMPLEMENTATION(returnType, name, ...) returnType, __VA_ARGS__
+#define DEF_MSG(enumValue, typedefAlias, implementation) typedef Msg<enumValue, implementation> typedefAlias;
+#define DEF_IMPL(returnType, name, ...) returnType, __VA_ARGS__
 #include "MessageTable.h"
 #endif //__cplusplus
 
 //Declare static implemetation functions.
-#define DEF_STATIC(x) x
+#define DEF_STATIC(function) function
 #include "MessageTable.h"
 
 #endif //TEMPLATE_HACKS_H

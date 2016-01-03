@@ -26,8 +26,8 @@ Result sendMessage(Message msg, ...)
 {
     //Declare function implementation pointers.
     static const auto messageFunctions = std::make_tuple(
-#define DEF_MESSAGE(enumValue, typedefAlias, implementation) typedefAlias(implementation)
-#define DEF_IMPLEMENTATION(returnType, name, ...) name
+#define DEF_MSG(enumValue, typedefAlias, implementation) typedefAlias(implementation)
+#define DEF_IMPL(returnType, name, ...) name
 #define DEF_COMMA ,
 #include "MessageTable.h"
         );
@@ -37,7 +37,7 @@ Result sendMessage(Message msg, ...)
     va_start(vaList, msg);
     switch (msg)
     {
-#define DEF_MESSAGE(enumValue, typedefAlias, implementation) \
+#define DEF_MSG(enumValue, typedefAlias, implementation) \
     case enumValue: \
         return Result(std::get<enumValue>(messageFunctions).Receive(vaList));
 #include "MessageTable.h"
